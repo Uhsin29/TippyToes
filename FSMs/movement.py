@@ -22,18 +22,6 @@ class MovementFSM(AbstractGameFSM):
             self.obj.velocity[self.axis] = 0
             self.obj.position[self.axis] = RESOLUTION[self.axis] - self.obj.getSize()[self.axis]
 
-
-
-            
-        # if self.obj.position[1] < 0 and self == "negative":
-        #     self.stop_decrease()
-        #     self.obj.velocity[1] = 0
-        # elif self.obj.position[1] > RESOLUTION[1] - self.obj.getSize()[1] and self == "positive":
-        #     self.stop_increase()
-        #     self.obj.velocity[1] = 0
-        
-
-
 class AccelerationFSM(MovementFSM):
     """Axis-based acceleration with gradual stopping."""
     not_moving = State(initial=True)

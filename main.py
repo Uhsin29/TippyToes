@@ -1,6 +1,8 @@
 import pygame
 from gameObjects import GameEngine
+from UI import ScreenManager
 from utils import RESOLUTION, UPSCALED
+from utils.soundManager import SoundManager
 
 def main():
     #Initialize the module
@@ -14,20 +16,23 @@ def main():
     drawSurface = pygame.Surface(list(map(int, RESOLUTION)))
 
     
-    gameEngine = GameEngine()
+    screenManager = ScreenManager()
     
     RUNNING = True
+
+    sm = SoundManager.getInstance()
+    sm.playBGM("Darkling.mp3")
     
     while RUNNING:
-        gameEngine.draw(drawSurface)
+
         
+    
+        screenManager.draw(drawSurface)
         pygame.transform.scale(drawSurface,
                                list(map(int, UPSCALED)),
                                screen)
-     
         pygame.display.flip()
         gameClock = pygame.time.Clock()
-        
         # event handling, gets all event from the eventqueue
         for event in pygame.event.get():
             # only do something if the event is of type QUIT
@@ -35,17 +40,14 @@ def main():
                 # change the value to False, to exit the main loop
                 RUNNING = False
             else:
-                gameEngine.handleEvent(event)
-        
+                result = screenManager.handleEvent(event)
+                if result == "exit":
+                    RUNNING = False
         gameClock.tick(60)
         seconds = gameClock.get_time() / 1000
-        gameEngine.update(seconds)
-     
+        screenManager.update(seconds)
     pygame.quit()
 
 
 if __name__ == '__main__':
     main()
-
-    ### ADD a transition with the camera when moving from section to section.
-    ### clipline from pygame, check if there is a wall before the guard can see kirby. If there is a wall, then the guard can't see kirby.

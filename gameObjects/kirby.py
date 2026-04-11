@@ -30,6 +30,10 @@ class Kirby(Mobile):
       self.FSManimated = WalkingFSM(self)
       self.LR = AccelerationFSM(self, axis=0)
       self.UD = AccelerationFSM(self, axis=1)
+      self.red_key = False
+      self.blue_key = False
+      self.yellow_key = False
+
    def handleEvent(self, event):
       if event.type == KEYDOWN:
          if event.key == K_UP:
@@ -63,6 +67,22 @@ class Kirby(Mobile):
       self.UD.update(seconds)
       
       super().update(seconds)
+
+
+   def updateMovement(self):
+      # For unpausing the game
+      pressed = pygame.key.get_pressed()
+      
+      
+      if not pressed[pygame.K_UP] and self.UD == "decrease":
+         self.UD.stop_decrease()
+      if not pressed[pygame.K_DOWN] and self.UD == "increase":
+         self.UD.stop_increase()
+         
+      if not pressed[pygame.K_LEFT] and self.LR == "decrease":
+         self.LR.stop_decrease()
+      if not pressed[pygame.K_RIGHT] and self.LR == "increase":
+         self.LR.stop_increase()
    
    
   

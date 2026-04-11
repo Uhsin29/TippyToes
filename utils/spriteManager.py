@@ -35,7 +35,12 @@ class SpriteManager(object):
     
     # Static information about the sprite sizes of particular image sheets.
     _SPRITE_SIZES = {
-        "kirby.png" : vec(16,16)
+        "kirby.png" : vec(16,16),
+        "walls_floor.png" : vec(30,30),
+        "background.jpg" : vec(800,600),
+        "blue_key.png" : vec(30,40),
+        "yellow_key.png" : vec(30,40),
+        "red_key.png" : vec(30,40)
     }
     
     # A default sprite size
@@ -43,17 +48,24 @@ class SpriteManager(object):
     
     # If images need to be rescaled
     _SCALES = {
-        "kirby.png" : 2
+        "kirby.png" : 2,
+        "wall.png" : .12,
+        "background.jpg" : 3,
+        "blue_key.png" : 1.5,
+        "yellow_key.png" : 1.5,
+        "red_key.png" : 1.5,
+        "main_menu.jpg" : 2,
+        "main_menu2.jpg" : 2
         # Can also be tuples, ex: (2,3)
     }
     
     _DEFAULT_SCALE = 1
     
     # A list of images that require to be loaded with transparency
-    _TRANSPARENCY = ["orb.png", "kirby.png"]
+    _TRANSPARENCY = ["orb.png", "kirby.png", "blue_key.png", "yellow_key.png", "red_key.png", "guard.png"]
     
     # A list of images that require to be loaded with a color key
-    _COLOR_KEY = ["kirby.png", "orb.png"]
+    _COLOR_KEY = ["kirby.png", "orb.png", "blue_key.png", "yellow_key.png", "red_key.png", "guard.png"]
     
     def __init__(self):
         """Creation of the SpriteManager, sets up storage for surface.
