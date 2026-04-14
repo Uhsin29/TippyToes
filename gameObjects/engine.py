@@ -1,6 +1,4 @@
 import pygame
-
-from gameObjects import kirby
 from .guard import Guard
 from . import Drawable, Kirby
 
@@ -42,7 +40,7 @@ class GameEngine(object):
                 # New guard positions
                 self.guard = Guard((100,220), self.check_solid, patrol_axis="horizontal")
                 self.guard1 = Guard((1110,200), self.check_solid, patrol_axis="vertical")
-                self.guard2 = Guard((1015,515), self.check_solid, patrol_axis="horizontal")
+                self.guard2 = Guard((115,515), self.check_solid, patrol_axis="horizontal")
                 self.guard3 = Guard((460,70), self.check_solid, patrol_axis="stationary", turn_timer=3.0, facing="down")
                 self.guard4 = Guard((567,650), self.check_solid, patrol_axis="stationary", turn_timer=3.0, facing="up")
                 self.guards = [self.guard, self.guard1, self.guard2, self.guard3, self.guard4]
@@ -105,7 +103,7 @@ class GameEngine(object):
             ]
             self.tile_size = 30
             self.size = vec(*RESOLUTION)
-            self.current_level = self.level1
+            self.current_level = self.level2
             self.load_level(self.current_level)
         
         def draw(self, drawSurface):        

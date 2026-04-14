@@ -135,11 +135,11 @@ class Guard(Mobile):
                 if self.chase_timer <= 0 and self.velocity[1] == 0:
                     self.direction *= -1
 
-    def has_line_of_sight(self):
-        if self.kirby_pos is None:
+    def has_line_of_sight(self, kirby_pos):
+        if kirby_pos is None:
             return False
         x0, y0 = self.position[0] + 15, self.position[1] + 15
-        x1, y1 = self.kirby_pos[0] + 15, self.kirby_pos[1] + 15
+        x1, y1 = kirby_pos[0] + 15, kirby_pos[1] + 15
         steps = int(max(abs(x1 - x0), abs(y1 - y0)) // 5)
         for i in range(1, steps):
             x = x0 + (x1 - x0) * i / steps
